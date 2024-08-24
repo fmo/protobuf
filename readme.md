@@ -95,16 +95,19 @@ Range: By specifying "unsigned," it's clear that the integer can take values fro
 
 Application: Unsigned integers are often used in scenarios where negative numbers are not needed, such as counting, indexing, or representing large values where maximizing the range is important.
 
-## Message Structure
+## Metadata Section
 
-A protocol buffer message is a series of key-value pairs. The binary version of a message just uses the field’s number as the key – the name and declared type for each field can only be determined on the decoding end by referencing the message type’s definition (i.e. the .proto file). Protoscope does not have access to this information, so it can only provide the field numbers.
+For example 
 
-When a message is encoded, each key-value pair is turned into a record consisting of the field number, a wire type and a payload. The wire type tells the parser how big the payload after it is. This allows old parsers to skip over new fields they don’t understand. This type of scheme is sometimes called Tag-Length-Value, or TLV.
+```
+message CreateOrderRequest {
+    int64 user_id = 1;
+}
+```
 
-There are six wire types: VARINT, I64, LEN, SGROUP, EGROUP, and I32
+00001000
 
-<img width="615" alt="Screenshot 2024-08-18 at 16 08 16" src="https://github.com/user-attachments/assets/e70ce79b-2626-40a1-a769-8d64643bdbb2">
-
-![Screenshot 2024-08-18 at 18 00 17](https://github.com/user-attachments/assets/10624395-562a-4fe1-86b3-dc45a2e63e67)
-
-![Screenshot 2024-08-18 at 18 02 00](https://github.com/user-attachments/assets/c8b53181-d0ed-4308-8c9a-3e3571e552ef)
+* Low first 3 low bits indicates the wire type -> 000
+* First bit of the data section is called the most significant bit (MSB), and its
+value is 0 when there is no additional byte. Its value becomes 1 if more bytes come to encode the remaining data.
+* The remaining bits of the metadata section contain the field value. -> 0001 
