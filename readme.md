@@ -95,6 +95,9 @@ Range: By specifying "unsigned," it's clear that the integer can take values fro
 
 Application: Unsigned integers are often used in scenarios where negative numbers are not needed, such as counting, indexing, or representing large values where maximizing the range is important.
 
+Encoding: Protobuf uses a unified varint encoding that doesn’t distinguish signed/unsigned during the encoding process itself.
+Decoding: When the data is decoded, Protobuf applies the correct interpretation based on the field's type definition (int32, uint32, etc.).
+
 ## Metadata Section
 
 For example 
