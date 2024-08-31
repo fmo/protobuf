@@ -63,10 +63,6 @@ This allows for efficient encoding of integers using a variable number of bytes.
 0000000 (which is 0 in decimal)
 to 1111111 (which is 127 in decimal).
 
-The varint encoding of 150 is 0x96 0x01, which is 9601 in hexadecimal.
-
-When it's marshalled to binary, it uses base 128 varints to encode the go struct to binary.
-
 Variable-width integers, or varints, are at the core of the wire format. 
 
 Variable-width integers (also known as variable-length integers or varints) are a way to encode integers using a variable number of bytes, rather than a fixed number. 
