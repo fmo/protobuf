@@ -43,6 +43,8 @@ So, this message consumes 3 bytes in total.
 
 ## Marshalling
 
+![Screenshot 2024-08-31 at 20 43 46](https://github.com/user-attachments/assets/0b23426d-5227-4d51-9b10-a74046e6cde7)
+
 <p>The request object is marshalled by the protocol buffer into []byte to be able to sent over gRPC. Marshalling results in some bytes containing encoding information of the metadata and the data itself.</p>
 
 <p>First you drop the MSB from each byte, as this is just there to tell us whether we’ve reached the end of the number (as you can see, it’s set in the first byte as there is more than one byte in the varint). These 7-bit payloads are in little-endian order. Convert to big-endian order, concatenate, and interpret as an unsigned 64-bit integer:</p>
