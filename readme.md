@@ -63,11 +63,6 @@ This allows for efficient encoding of integers using a variable number of bytes.
 0000000 (which is 0 in decimal)
 to 1111111 (which is 127 in decimal).
 
-In Base 128 Varint encoding, we only use 7 of these 8 bits to represent the actual data.
-The remaining 1 bit (the most significant bit, or MSB) is used as a continuation flag.
-
-### Continue to Base 128 Variants
-
 The varint encoding of 150 is 0x96 0x01, which is 9601 in hexadecimal.
 
 When it's marshalled to binary, it uses base 128 varints to encode the go struct to binary.
