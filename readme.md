@@ -63,8 +63,6 @@ This allows for efficient encoding of integers using a variable number of bytes.
 0000000 (which is 0 in decimal)
 to 1111111 (which is 127 in decimal).
 
-Variable-width integers, or varints, are at the core of the wire format. 
-
 Variable-width integers (also known as variable-length integers or varints) are a way to encode integers using a variable number of bytes, rather than a fixed number. 
 This encoding is commonly used in data formats where space efficiency is critical.
 
